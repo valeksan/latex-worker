@@ -1,0 +1,613 @@
+\documentclass[a4paper, 8pt]{article}  
+
+\usepackage{longtable}
+%\usepackage{pdfbase}
+\usepackage[left=0.5cm,right=0.5cm,top=0.5cm,bottom=0.5cm,includehead,headheight=70pt,voffset=0cm, headsep=0.2cm, footskip=0cm ]{geometry}
+\usepackage{fancyhdr} %загрузим пакет
+\usepackage[T1,T2A]{fontenc}	% кодировка
+\usepackage[utf8x]{inputenc} 	% кодировка исходного текста
+\usepackage[english,russian]{babel} % локализация и переносы
+\usepackage[hhmmss]{datetime} % дата и время в формате 28 ноября 2018г. 10:30:25
+\usepackage{qrcode}
+\pagestyle{fancy} %применим колонтитул
+%\topmargin=0pt
+
+
+%\input{page1_data}
+
+\usepackage{indentfirst} % красная строка для первого параграфа;  
+\usepackage{misccorr} % пакет с дополнительными настройками для соответствия правилам отечественной полиграфии
+\usepackage{graphicx} % вставка графических изображений
+\usepackage{amsmath} % математический пакет
+\usepackage{tabularx} % расширенный пакет таблиц (типы колонок m, b)
+\usepackage{array}
+\usepackage{multirow} % для объединения строк в таблице
+\usepackage{ifthen}
+
+
+\newcommand{\lineAxA}{\rule[+0.0mm]{1.5cm}{0.1mm}}
+\newcommand{\lineAxB}{\rule[+0.0mm]{3cm}{0.1mm}}
+\newcommand{\lineAxC}{\rule[+0.0mm]{2cm}{0.1mm}}
+
+\newcommand{\defAxA}{приемо-сдаточных испытаний}    % еще необходимо ввести команду для предъявительских испытаний! А также для нормальных условий, повышенной температуры, пониженной температуры
+\newcommand{\defAxB}{ДИВШ.000000.000ТУ}
+
+%!upd
+\newcommand{\QrI}[1][page1 empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty ]{\qrcode[height=1in]{#1}}
+\newcommand{\QrII}[1][page2 empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty ]{\qrcode[height=1in]{#1}}
+\newcommand{\QrIII}[1][page3 empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty ]{\qrcode[height=1in]{#1}}
+\newcommand{\QrIV}[1][page4 empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty empty ]{\qrcode[height=1in]{#1}}
+
+\newcommand{\ProtocolNumber}[1][{\lineAxA}]{#1}
+\newcommand{\TextCheckAim}[1][{\defAxA}]{#1}
+\newcommand{\NameCheckedDevice}[1][{\lineAxB}]{#1}
+\newcommand{\AtmDeviceNumber}[1][{\lineAxC}]{#1}
+\newcommand{\Divsh}[1][{\defAxB}]{#1}
+\newcommand{\AtmSerial}[1][0]{#1}  % уточнить!
+
+\newcommand{\EpsAxA}[1][-]{#1}
+\newcommand{\ValueAxA}[1][-]{#1}
+\newcommand{\StateAxA}[1][-]{#1}
+\newcommand{\ValueAxB}[1][-]{#1}
+\newcommand{\StateAxB}[1][-]{#1}
+\newcommand{\ValueAxC}[1][-]{#1}
+\newcommand{\StateAxC}[1][-]{#1}
+\newcommand{\ValueAxD}[1][-]{#1}
+\newcommand{\StateAxD}[1][-]{#1}
+\newcommand{\ValueAxE}[1][-]{#1}
+\newcommand{\StateAxE}[1][-]{#1}
+
+\newcommand{\EpsBxA}[1][-]{#1}
+\newcommand{\ValueBxA}[1][-]{#1}
+\newcommand{\StateBxA}[1][-]{#1}
+\newcommand{\EpsBxB}[1][-]{#1}
+\newcommand{\ValueBxB}[1][-]{#1}
+\newcommand{\StateBxB}[1][-]{#1}
+\newcommand{\EpsBxC}[1][-]{#1}
+\newcommand{\ValueBxC}[1][-]{#1}
+\newcommand{\StateBxC}[1][-]{#1}
+\newcommand{\EpsBxD}[1][-]{#1}
+\newcommand{\ValueBxD}[1][-]{#1}
+\newcommand{\StateBxD}[1][-]{#1}
+\newcommand{\EpsBxE}[1][-]{#1}
+\newcommand{\ValueBxE}[1][-]{#1}
+\newcommand{\StateBxE}[1][-]{#1}
+\newcommand{\EpsBxF}[1][-]{#1}
+\newcommand{\ValueBxF}[1][-]{#1}
+\newcommand{\StateBxF}[1][-]{#1}
+\newcommand{\EpsBxG}[1][-]{#1}
+\newcommand{\ValueBxG}[1][-]{#1}
+\newcommand{\StateBxG}[1][-]{#1}
+
+\newcommand{\EpsCxA}[1][-]{#1}
+\newcommand{\ValueCxA}[1][-]{#1}
+\newcommand{\StateCxA}[1][-]{#1}
+\newcommand{\EpsCxB}[1][-]{#1}
+\newcommand{\ValueCxB}[1][-]{#1}
+\newcommand{\StateCxB}[1][-]{#1}
+\newcommand{\EpsCxC}[1][-]{#1}
+\newcommand{\ValueCxC}[1][-]{#1}
+\newcommand{\StateCxC}[1][-]{#1}
+\newcommand{\EpsCxD}[1][-]{#1}
+\newcommand{\ValueCxD}[1][-]{#1}
+\newcommand{\StateCxD}[1][-]{#1}
+\newcommand{\EpsCxE}[1][-]{#1}
+\newcommand{\ValueCxE}[1][-]{#1}
+\newcommand{\StateCxE}[1][-]{#1}
+\newcommand{\EpsCxF}[1][-]{#1}
+\newcommand{\ValueCxF}[1][-]{#1}
+\newcommand{\StateCxF}[1][-]{#1}
+\newcommand{\EpsCxG}[1][-]{#1}
+\newcommand{\ValueCxG}[1][-]{#1}
+\newcommand{\StateCxG}[1][-]{#1}
+
+\newcommand{\EpsDxA}[1][-]{#1}
+\newcommand{\ValueDxA}[1][-]{#1}
+\newcommand{\StateDxA}[1][-]{#1}
+\newcommand{\EpsDxB}[1][-]{#1}
+\newcommand{\ValueDxB}[1][-]{#1}
+\newcommand{\StateDxB}[1][-]{#1}
+\newcommand{\EpsDxC}[1][-]{#1}
+\newcommand{\ValueDxC}[1][-]{#1}
+\newcommand{\StateDxC}[1][-]{#1}
+\newcommand{\EpsDxD}[1][-]{#1}
+\newcommand{\ValueDxD}[1][-]{#1}
+\newcommand{\StateDxD}[1][-]{#1}
+\newcommand{\EpsDxE}[1][-]{#1}
+\newcommand{\ValueDxE}[1][-]{#1}
+\newcommand{\StateDxE}[1][-]{#1}
+\newcommand{\EpsDxF}[1][-]{#1}
+\newcommand{\ValueDxF}[1][-]{#1}
+\newcommand{\StateDxF}[1][-]{#1}
+\newcommand{\EpsDxG}[1][-]{#1}
+\newcommand{\ValueDxG}[1][-]{#1}
+\newcommand{\StateDxG}[1][-]{#1}
+
+\newcommand{\EpsExA}[1][-]{#1}
+\newcommand{\ValueExA}[1][-]{#1}
+\newcommand{\StateExA}[1][-]{#1}
+\newcommand{\EpsExB}[1][-]{#1}
+\newcommand{\ValueExB}[1][-]{#1}
+\newcommand{\StateExB}[1][-]{#1}
+\newcommand{\EpsExC}[1][-]{#1}
+\newcommand{\ValueExC}[1][-]{#1}
+\newcommand{\StateExC}[1][-]{#1}
+\newcommand{\EpsExD}[1][-]{#1}
+\newcommand{\ValueExD}[1][-]{#1}
+\newcommand{\StateExD}[1][-]{#1}
+\newcommand{\EpsExE}[1][-]{#1}
+\newcommand{\ValueExE}[1][-]{#1}
+\newcommand{\StateExE}[1][-]{#1}
+\newcommand{\EpsExF}[1][-]{#1}
+\newcommand{\ValueExF}[1][-]{#1}
+\newcommand{\StateExF}[1][-]{#1}
+\newcommand{\EpsExG}[1][-]{#1}
+\newcommand{\ValueExG}[1][-]{#1}
+\newcommand{\StateExG}[1][-]{#1}
+
+\newcommand{\EpsFxA}[1][-]{#1}
+\newcommand{\ValueFxA}[1][-]{#1}
+\newcommand{\StateFxA}[1][-]{#1}
+\newcommand{\EpsFxB}[1][-]{#1}
+\newcommand{\ValueFxB}[1][-]{#1}
+\newcommand{\StateFxB}[1][-]{#1}
+\newcommand{\EpsFxC}[1][-]{#1}
+\newcommand{\ValueFxC}[1][-]{#1}
+\newcommand{\StateFxC}[1][-]{#1}
+\newcommand{\EpsFxD}[1][-]{#1}
+\newcommand{\ValueFxD}[1][-]{#1}
+\newcommand{\StateFxD}[1][-]{#1}
+\newcommand{\EpsFxE}[1][-]{#1}
+\newcommand{\ValueFxE}[1][-]{#1}
+\newcommand{\StateFxE}[1][-]{#1}
+
+\newcommand{\EpsGxA}[1][-]{#1}
+\newcommand{\ValueGxA}[1][-]{#1}
+\newcommand{\StateGxA}[1][-]{#1}
+\newcommand{\EpsGxB}[1][-]{#1}
+\newcommand{\ValueGxB}[1][-]{#1}
+\newcommand{\StateGxB}[1][-]{#1}
+\newcommand{\EpsGxC}[1][-]{#1}
+\newcommand{\ValueGxC}[1][-]{#1}
+\newcommand{\StateGxC}[1][-]{#1}
+
+\newcommand{\EpsHxA}[1][-]{#1}
+\newcommand{\ValueHxA}[1][-]{#1}
+\newcommand{\StateHxA}[1][-]{#1}
+\newcommand{\EpsHxB}[1][-]{#1}
+\newcommand{\ValueHxB}[1][-]{#1}
+\newcommand{\StateHxB}[1][-]{#1}
+
+\newcommand{\ValueIxA}[1][-]{#1}
+\newcommand{\StateIxA}[1][-]{#1}
+
+\newcommand{\ValueJxA}[1][-]{#1}
+\newcommand{\StateJxA}[1][-]{#1}
+
+\newcommand{\ValueKxA}[1][-]{#1}
+\newcommand{\StateKxA}[1][-]{#1}
+
+\newcommand{\ValueLxA}[1][-]{#1}
+\newcommand{\StateLxA}[1][-]{#1}
+
+\newcommand{\ValueMxA}[1][-]{#1}
+\newcommand{\StateMxA}[1][-]{#1}
+
+\newcommand{\ValueNxA}[1][-]{#1}
+\newcommand{\StateNxA}[1][-]{#1}
+
+\newcommand{\ValueOxA}[1][-]{#1}
+\newcommand{\StateOxA}[1][-]{#1}
+
+\newcommand{\ValuePxA}[1][-]{#1}
+\newcommand{\StatePxA}[1][-]{#1}
+\newcommand{\ValuePxB}[1][-]{#1}
+\newcommand{\StatePxB}[1][-]{#1}
+\newcommand{\ValuePxC}[1][-]{#1}
+\newcommand{\StatePxC}[1][-]{#1}
+
+\newcommand{\ValueQxA}[1][-]{#1}
+\newcommand{\StateQxA}[1][-]{#1}
+
+\newcommand{\ValueRxA}[1][-]{#1}
+\newcommand{\StateRxA}[1][-]{#1}
+\newcommand{\ValueRxB}[1][-]{#1}
+\newcommand{\StateRxB}[1][-]{#1}
+\newcommand{\ValueRxC}[1][-]{#1}
+\newcommand{\StateRxC}[1][-]{#1}
+\newcommand{\ValueRxD}[1][-]{#1}
+\newcommand{\StateRxD}[1][-]{#1}
+
+\newcommand{\ValueSxA}[1][-]{#1}
+\newcommand{\StateSxA}[1][-]{#1}
+\newcommand{\ValueSxB}[1][-]{#1}
+\newcommand{\StateSxB}[1][-]{#1}
+
+\newcommand{\ValueTxA}[1][-]{#1}
+\newcommand{\StateTxA}[1][-]{#1}
+
+\newcommand{\ValueUxA}[1][-]{#1}
+\newcommand{\StateUxA}[1][-]{#1}
+
+\newcommand{\NominalVxA}[1][-]{#1}
+\newcommand{\ValueVxA}[1][-]{#1}
+\newcommand{\StateVxA}[1][-]{#1}
+
+\newcommand{\ValueWxA}[1][-]{#1}
+\newcommand{\StateWxA}[1][-]{#1}
+
+\newcommand{\InputA}[1][-]{#1}
+\newcommand{\InputB}[1][-]{#1}
+\newcommand{\OutputA}[1][-]{#1}
+\newcommand{\OutputB}[1][-]{#1}
+
+\newcommand{\EnableExtEps}[1][1]{#1}
+%!upd_end
+
+\newcommand{\EpsPxA}[1][-]{#1}
+\newcommand{\EpsPxB}[1][-]{#1}
+\newcommand{\EpsPxC}[1][-]{#1}
+
+\newcommand{\EpsQxA}[1][-]{#1}
+
+\newcommand{\EpsRxA}[1][-]{#1}
+\newcommand{\EpsRxB}[1][-]{#1}
+\newcommand{\EpsRxC}[1][-]{#1}
+\newcommand{\EpsRxD}[1][-]{#1}
+
+\newcommand{\EpsSxA}[1][-]{#1}
+\newcommand{\EpsSxB}[1][-]{#1}
+
+\newcommand{\EpsTxA}[1][-]{#1}
+
+\newcommand{\EpsUxA}[1][-]{#1}
+
+\newcommand{\EpsWxA}[1][-]{#1}
+
+% header %
+\fancyhead{} %очистим хидер на всякий случай
+\fancyhead[R]{\today \\ \currenttime\\ \ \\ \ \\ \ \\ \ \\ } % дата и время в колонтитуле справа
+\fancyhead[L] {
+	\ifthenelse{\equal{\thepage}{1}}{\QrI \\ \ \\}{
+		{
+			\ifthenelse{\equal{\thepage}{2}}{\QrII \\ \ \\}{
+				{
+					\ifthenelse{\equal{\thepage}{3}}{\QrIII \\ \ \\}{
+						{
+							\ifthenelse{\equal{\thepage}{4}}{\QrIV \\ \ \\}{
+								{
+									-
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+} % qrcode
+%\fancyhead[C]{ Протокол № \rule[+0.0mm]{1cm}{0.3mm} \\  \\  \\ }
+\fancyfoot{} %очистим футер
+\renewcommand{\footrulewidth}{0.0 mm} % толщина отделяющей полоски снизу
+\renewcommand{\headrulewidth}{0.0 mm} % толщина отделяющей полоски сверху
+
+\begin{document}
+	
+	% лист 1
+	
+	
+	\centering
+  
+
+{\large \textbf{Протокол № \lineAxA}} \\ %\rule[+0.0mm]{1.5cm}{0.1mm}}} \\  
+\vspace{0.5cm}
+	{ \large \defAxA \hskip 0.01\hsize изделий (аппаратуры) \lineAxB   \hskip 0.01\hsize  зав. №  \hskip 0.01\hsize \lineAxC }\
+	\newline
+	
+	%{ \large приемо-сдаточных испытаний изделий (аппаратуры) \lineAxB \rule[+0.0mm]{3cm}{0.1mm}  \hskip 0.01\hsize  зав. №  \hskip 0.01\hsize \rule[+0.0mm]{2cm}{0.1mm} }\
+	%\newline\newline
+	
+	Нормальные условия
+
+		
+		\begin{longtable}{| >{\centering\arraybackslash}m{0.33cm} |  m{4.3cm} |  >{\centering\arraybackslash}m{0.9cm} |  >{\centering\arraybackslash}m{1cm} | >{\centering\arraybackslash}m{0.8cm} |  >{\centering\arraybackslash}m{1.1cm} | >{\centering\arraybackslash}m{1.0cm}  | >{\centering\arraybackslash}m{1.0cm} |  >{\centering\arraybackslash}m{1.2cm} | >{\centering\arraybackslash}m{4.0cm} | }    
+		\hline
+		
+    %  Шапка таблицы вариант 1
+
+           % &   &  & \multicolumn{3}{c|}{\footnotesize ДИВШ.773642.009ТУ} & \multicolumn{2}{c|}{\multirow{2}{*}{Требования к параметру}} &  \\ 
+          % \cline{4-6} 
+           %  &  &  & \multicolumn{3}{c|}{№ пунктов} &  \multicolumn{2}{c|}{}  &  \\ 
+           % \cline{4-8}
+            % № п/п & \centering Наименование параметра & Ед. изм. & Пункт таблицы 1.1 & ТУ & Метод испытания  & Номинал  & Предельное отклонение &   Данные испытаний, контроля   \\ [1.5em]
+           
+            % \hline \endhead  
+            
+             %  Шапка таблицы вариант 2
+             
+             \multirow{3}{*}{}& \multirow{3}{*}{}  &  & \multicolumn{3}{c|}{\footnotesize \defAxB} & \multicolumn{2}{c|}{\multirow{2}{*}{Требования }} & &  \\ 
+             \cline{4-6} 
+             &  &  & \multicolumn{3}{c|}{№ пунктов} &  \multicolumn{2}{c|}{к параметру}  & Данные  &  \\ 
+             \cline{4-8}
+             № п/п &  \centering Наименование параметра & Ед. изм. & Пункт таблицы 1.1 & ТУ & Метод испытания  & Номи-нал  & Пред. откл. &   испы-таний, контроля   & Примечания \\ 
+             \hline \endhead 
+            
+            %[1.0em]
+         
+		1 & \centering 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
+		\hline
+		\textbf{1} & \textbf{Проверка электрических параметров} & & & & 3.1, 3.12,  3.13 &  &  &  & \\  
+	   \cline{2-4}\cline{6-10}
+		 & \textbf{Время готовности} & Соотв. & 19 &  &  3.1.4 & Соотв.  &   &   &  \\
+	    \cline{2-4}\cline{6-10}
+		 & \textbf{Ток потребления по \newline цепи + 27В} & А & 1 &  & 3.1.5 &  0,60 & ±\EpsAxA & \ValueAxA & \StateAxA \\ 
+	    \cline{2-4}\cline{6-10}
+		 & \textbf{Напряжение +12В} & В & 2 &  & \multirow{4}{*}{} &  12,00 & ±0,30 & \ValueAxB & \StateAxB \\
+	    \cline{2-4} \cline{7-10}
+         & \textbf{Напряжение -12В} & В & 3 &  & 3.1.6  &  -12,00 & ±0,80 & \ValueAxC & \StateAxC \\
+        \cline{2-4} \cline{7-10}
+         & \textbf{Напряжение -5В} & В & 4 &  &  &  -5,00 & ±0,40 & \ValueAxE & \StateAxE \\
+         \cline{2-4} \cline{7-10}
+	     & \textbf{Напряжение +5В} & В & 5 &  &  &  5,00 & ±0,20 & \ValueAxD & \StateAxD \\ 
+	    \cline{2-4} \cline{6-10}
+	    
+	     
+	    
+	     & \textbf{Параметр \newline 1-й вход – 1-й выход} &  &  &  &   & \multicolumn{4}{c|}{} \\
+	   \cline{2-3} \cline{7-10}
+	     & а)0Т & дБ &  &   &  &  & ±\EpsBxA & \ValueBxA & \StateBxA \\
+	    \cline{2-3} \cline{7-10}
+	     & б)1Т & дБ &  &   &  &  & ±\EpsBxB & \ValueBxB & \StateBxB \\ 
+	   \cline{2-3} \cline{7-10}
+	     & в)2Т & дБ & 6 &   & 3.1.7.1 &  & ±\EpsBxC & \ValueBxC & \StateBxC \\
+	    \cline{2-3} \cline{7-10}
+	     & г)3Т & дБ &  & 1.2.2,  &  &  & ±\EpsBxD & \ValueBxD & \StateBxD \\
+	    \cline{2-3} \cline{7-10}
+	     & д)4Т & дБ &  & 1.2.4,  &  &  & ±\EpsBxE & \ValueBxE & \StateBxE \\
+	    \cline{2-3} \cline{7-10}
+	     & е)5Т & дБ &  & 1.4.1  &  &  & ±\EpsBxF & \ValueBxF & \StateBxF \\
+	   \cline{2-3} \cline{7-10}
+	     & ж)6Т & дБ &  &   &  &  & ±\EpsBxG & \ValueBxG & \StateBxG \\
+	    \cline{2-4} \cline{6-10}
+	   
+	     & \textbf{Параметр \newline 1-й вход –  2-й выход}  &  &  &  &  & \multicolumn{4}{c|}{} \\
+	    \cline{2-3} \cline{7-10}
+	     & а)0Т & дБ &  &   &  &  & ±\EpsCxA & \ValueCxA & \StateCxA \\
+	    \cline{2-3} \cline{7-10}
+	     & б)1Т & дБ &  &   &  &  & ±\EpsCxB & \ValueCxB & \StateCxB \\
+	    \cline{2-3} \cline{7-10}
+	     & в)2Т & дБ & 7 &   & 3.1.7.2 &  & ±\EpsCxC & \ValueCxC & \StateCxC \\
+	    \cline{2-3} \cline{7-10}
+	     & г)3Т & дБ &  &    &  &  & ±\EpsCxD & \ValueCxD & \StateCxD \\
+	    \cline{2-3} \cline{7-10}
+	     & д)4Т & дБ &  &   &  &  & ±\EpsCxE & \ValueCxE & \StateCxE \\
+	    \cline{2-3} \cline{7-10}
+	     & е)5Т & дБ &  &   &  &  & ±\EpsCxF & \ValueCxF & \StateCxF \\
+	    \cline{2-3} \cline{7-10}
+	     & ж)6Т & дБ &  &   &  &  & ±\EpsCxG & \ValueCxG & \StateCxG \\
+	    \cline{2-4} \cline{6-10}
+	 
+	     & \textbf{Параметр \newline 2-й вход – 2-й выход} &  &  &  &  & \multicolumn{4}{c|}{} \\
+	    \cline{2-3} \cline{7-10}
+	      & а)0Т & дБ &  &   &  &  & ±\EpsDxA & \ValueDxA & \StateDxA \\
+	    \cline{2-3} \cline{7-10}
+	      & б)1Т & дБ &  &   &  &  & ±\EpsDxB & \ValueDxB & \StateDxB \\
+	    \cline{2-3} \cline{7-10}
+	      & в)2Т & дБ & 9 &   & 3.1.7.3 &  & ±\EpsDxC & \ValueDxC & \StateDxC \\
+	    \cline{2-3} \cline{7-10}
+	      & г)3Т & дБ &  &   &  &  & ±\EpsDxD & \ValueDxD & \StateDxD \\
+	    \cline{2-3} \cline{7-10}
+	      & д)4Т & дБ &  &   &  &  & ±\EpsDxE & \ValueDxE & \StateDxE \\
+	    \cline{2-3} \cline{7-10}
+	      & е)5Т & дБ &  &   &  &  & ±\EpsDxF & \ValueDxF & \StateDxF \\
+	    \cline{2-3} \cline{7-10}
+	      & ж)6Т & дБ &  &   &  &  & ±\EpsDxG & \ValueDxG & \StateDxG \\
+	    \cline{2-10} 
+	    
+	    	& \textbf{Дата}& \multicolumn{7}{c}{} & \\
+	    	\cline{2-10}
+	    	& \textbf{Подпись} & \multicolumn{7}{c}{} & \\ 
+	    	
+	    	
+	    
+	    	% лист 2
+	    \hline\newpage
+	    
+	    1 & \centering 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
+	    \hline
+	   
+	    & \textbf{Параметр \newline 2-й вход – 1-й выход} &  &  &  &  & \multicolumn{4}{c|}{} \\
+	   \cline{2-3} \cline{7-10}
+	    & а)0Т & дБ &  &   &  &  & ±\EpsExA & \ValueExA & \StateExA \\
+	   \cline{2-3} \cline{7-10}
+	    & б)1Т & дБ &  &   &  &  & ±\EpsExB & \ValueExB & \StateExB \\
+	   \cline{2-3} \cline{7-10}
+	    & в)2Т & дБ & 8 &   & 3.1.7.4 &  & ±\EpsExC & \ValueExC & \StateExC \\
+	   \cline{2-3} \cline{7-10}
+	    & г)3Т & дБ &  &   &  &  & ±\EpsExD & \ValueExD & \StateExD \\
+	   \cline{2-3} \cline{7-10}
+	    & д)4Т & дБ &  &   &  &  & ±\EpsExE & \ValueExE & \StateExE \\
+	   \cline{2-3} \cline{7-10}
+	    & е)5Т & дБ &  &   &  &  & ±\EpsExF & \ValueExF & \StateExF \\
+	   \cline{2-3} \cline{7-10}
+	    & ж)6Т & дБ &  &   &  &  & ±\EpsExG & \ValueExG & \StateExG \\
+	   \cline{2-4} \cline{6-10}
+	   
+	  
+	   & \textbf{Параметр при подаче команды НЛЦ} & дБ &  & &  &\multicolumn{4}{c|}{}  \\
+	   \cline{2-3} \cline{7-10}
+	   & а)0Т & дБ &  &   &  &  & ±\EpsFxA & \ValueFxA & \StateFxA \\
+	   \cline{2-3} \cline{7-10}
+	   & б)1Т & дБ & 10 &   & 3.1.7.5 &  & ±\EpsFxB & \ValueFxB & \StateFxB \\
+	   \cline{2-3} \cline{7-10}
+	   & в)2Т & дБ &  &   &  &  & ±\EpsFxC & \ValueFxC & \StateFxC \\
+	   \cline{2-3} \cline{7-10}
+	   & г)3Т & дБ &  &   &  &  & ±\EpsFxD & \ValueFxD & \StateFxD \\
+	   \cline{2-3} \cline{7-10}
+	   & д)4Т & дБ &  & 1.2.2,  &  &  & ±\EpsFxE & \ValueFxE & \StateFxE \\
+	   \cline{2-4} \cline{6-10} 
+	   
+	   & \textbf{\small Функционирование канала помехи}  & Соотв. & 13 &  1.4.1, 1.2.4 & 3.1.13  & Соотв. &  & \ValueVxA & \StateVxA \\ 
+	 \cline{2-4} \cline{6-10} 
+	   & \textbf{\small Несрабатывание по цепи П5 при подаче команды БВ}  & Соотв. & 14 &  &  3.1.8 & Соотв. &   & \ValueKxA  & \StateKxA \\ 
+	  \cline{2-4} \cline{6-10} 
+	  & \textbf{\small Несрабатывание по цепи П6 при подаче команды БВ}  & Соотв. & 15 &  &  3.1.8 & Соотв. &   & \ValueJxA & \StateJxA \\ 
+	  \cline{2-4} \cline{6-10} 
+	  
+	   & \textbf{\small Функционирование на нагрузке 5 Ом по цепи П5}  & Соотв. & 16 &  & 3.1.9  & Соотв. &   & \ValueLxA & \StateLxA \\ 
+	  \cline{2-4} \cline{6-10} 
+	  & \textbf{\small Функционирование на нагрузке 5 Ом по цепи П6}  & Соотв. & 17 &  &  3.1.10  & Соотв. &   & \ValueMxA  & \StateMxA \\ 
+	  \cline{2-4} \cline{6-10}
+	  
+	  & \textbf{\small Функционирование при подаче команды СЛ}  & Соотв. & 18 &  & 3.1.7.8  & Соотв. &   & \ValueIxA & \StateIxA \\ 
+	  \cline{2-4} \cline{6-10} 
+	   & \textbf{\small Прохождение телеметрического сигнала П5}  & Соотв. & 20 &  & 3.1.11.2  & Соотв. &   &  \ValueOxA & \StateOxA \\ 
+	   \cline{2-4} \cline{6-10} 
+	    & \textbf{\small Прохождение телеметрического сигнала П6}  & Соотв. & 21 &  & 3.1.11.1  & Соотв. &   & \ValueNxA & \StateNxA \\ 
+	    \cline{2-10} 
+	    
+	    	& \textbf{Дата}& \multicolumn{7}{c}{} & \\
+	    	\cline{2-10}
+	    	& \textbf{Подпись} & \multicolumn{7}{c}{} & \\ 
+	    	\hline\newpage
+	    	
+	    
+	     % лист 3
+	     
+	     
+	     	1 & \centering 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
+	     	\hline
+	   
+	   & \textbf{Напряжение на выходе канала Тм3} &  &  &  &  & \multicolumn{4}{c|}{} \\
+	  \cline{2-3} \cline{7-10} 
+	   & а)при отсутствии команд & В & 22 &   & 3.1.11.3 & 6,0 & ±0,40 & \ValuePxA & \StatePxA \\
+	  \cline{2-3} \cline{7-10} 
+	  & б)при подаче команды Р2 & В &  &  &  & 5,2 & ±0,35 & \ValuePxC  & \StatePxC \\
+	  \cline{2-3} \cline{7-10} 
+	   & в)при подаче команды Р1 & В &  &  &  & 4,4  & ±0,35 & \ValuePxB & \StatePxB \\
+	  \cline{2-4} \cline{6-10} 
+	  
+	   	  
+	   
+	   & \textbf{Прохождение сигнала ОЦ} & В & 23 &  & 3.1.11.4  & 1,1 & ±0,25 & \ValueQxA  & \StateQxA \\
+	  \cline{2-4} \cline{6-10} 
+	 
+	   & \textbf{Напряжение на выходе канала Тм4} &  &  &  &  & \multicolumn{4}{c|}{}  \\
+	  \cline{2-3} \cline{7-10} 
+	   & а)при отсутствии команд & В &  &  &  & 6,0 & ±0,40 &  \ValueRxA & \StateRxA \\
+	  \cline{2-3} \cline{7-10} 
+	   & б)при подаче команды ДВ & В & 24 &  & 3.1.11.5 & 4,4 & ±0,35 &  \ValueRxB & \StateRxB \\
+	  \cline{2-3} \cline{7-10} 
+	   & в)при выдаче сигнала АП & В &  & 1.2.2 &  & 3,6 & ±0,35 &  \ValueRxC & \StateRxC \\
+	  \cline{2-3} \cline{7-10} 
+	   & г)при подаче команды ДВ и БВ & В &  & 1.4.1, 1.2.4 &  & 1,1 & ±0,25 & \ValueRxD & \StateRxD \\
+	  \cline{2-4} \cline{6-10} 
+	  
+	  & \textbf{Напряжение на выходе канала Тм5} &  &  &  &  & \multicolumn{4}{c|}{}  \\ 
+	  \cline{2-3} \cline{7-10} 
+	  & а)при отсутствии команд & В & 25 &   & 3.1.11.6 & 6,0 & ±0,40 &  \ValueSxA & \StateSxA \\
+	  \cline{2-3} \cline{7-10} 
+	  & б)при подаче команды НЛЦ & В &  &  &  & 4,4 & ±0,35 &  \ValueSxB & \StateSxB \\
+	  \cline{2-4} \cline{6-10} 
+	  & \textbf{Напряжение на выходе канала Тм6 при отсутствии команд}  & В & 26 &  &  3.1.11.7  &  0,35 &  ±0,15 & \ValueTxA & \StateTxA \\
+	  \cline{2-4} \cline{6-10} 
+	  
+	   & \textbf{Напряжение на выходе канала Тм7 при отсутствии команд}  & В & 27 &  & 3.1.11.7  & 0,35 & ±0,15 & \ValueUxA & \StateUxA \\
+	   \cline{2-4} \cline{6-10} 
+	   
+	   
+	   & \textbf{Номер дискрета частоты среза фильтра при отстройке на частоте 18 кГц}  &  & 28 &  & 3.1.12  & 40 & ±6 & \ValueWxA & \StateWxA \\
+	   \hline 
+	  
+	   & \textbf{Дата} & \multicolumn{7}{c}{} & \\
+	   \cline{2-10} 
+	   & \textbf{Подпись} & \multicolumn{7}{c}{} & \\ 
+	   \hline 
+	   
+	\end{longtable} 
+	    
+	 % лист 4
+	 \newpage
+
+	   		
+	   		\begin{longtable}{| >{\centering\arraybackslash}m{0.35cm} | m{3.0cm} | >{\centering\arraybackslash}m{0.85cm} | >{\centering\arraybackslash}m{1.25cm} | >{\centering\arraybackslash}m{1cm} | >{\centering\arraybackslash}m{1.3cm} | >{\centering\arraybackslash}m{0.88cm} | >{\centering\arraybackslash}m{0.85cm} | >{\centering\arraybackslash}m{1.4cm} | >{\centering\arraybackslash}m{1.7cm} | >{\centering\arraybackslash}m{0.7cm} | >{\centering\arraybackslash}m{1.2cm} |   }    
+	   		\hline
+	   
+	   	
+	   		
+	   		&   &  & \multicolumn{2}{c|}{\footnotesize \defAxB} & \multicolumn{3}{c|}{\multirow{2}{*}{Требования к параметру}} & \multicolumn{2}{c|}{\multirow{4}{*}{}} &  &  \\ 
+	   		\cline{4-5} 
+	   		&   &  & \multicolumn{2}{c|}{№ пунктов} &  \multicolumn{3}{c|}{}  & \multicolumn{2}{c|}{Данные испытаний,} &  & \\ 
+	   		\cline{4-8} 
+	   		№ п/п & \centering Наименование параметра & Ед. изм. & Техн. требования & Метод испытания  & Номинал  & \multicolumn{2}{c|}{Пред. откл.} & \multicolumn{2}{c|}{контроля} & Дата & Подпись  \\ [-0.9em]
+	   		\cline{7-8}
+	   		&  &  &  &  &  & 1 кат & 3 кат & \multicolumn{2}{c|}{} &  &  \\
+	   		\hline %\endhead    
+	   		 
+	    
+	   \textbf{2} & \textbf{Испытание на воздействие ШСВ} &  & 1.4.4 а) & 3.6 &  &  &  & До виброустойчивости & Во время виброустойчивости &   & \\
+	    \hline
+	     & \textbf{Ток потребления по цепи \newline + 27В} & А &  &  & 0,60 &  ±0,30  & ±0,40 &   &  &   &  \\
+	   \hline
+	     & \textbf{Отсутствие ложного срабатывания} & Соотв. &  &  & Соотв. &  &  &   &  &   &  \\
+	   \hline 
+	   \textbf{3} & \textbf{Проверка на отсутствие инородных тел} & Соотв. & 1.3.7 & 3.3 & Соотв. &  &  &  &  &  &   \\
+	  \hline
+	   \textbf{4} &  \textbf{Проверка комплектности и качества упаковки} & Соотв. & 1.6, 1.8 & 3.4 & Соотв. & &  &  &  &  &   \\ 
+	  \hline
+	   \textbf{5} & \textbf{Проверка массы} & Соотв. & 1.3.5 & 3.16 & Соотв. &  &  &  &  &  &   \\
+	  \hline
+	   
+	\end{longtable}  
+	
+	
+	
+% Таблица Отклонения переходных ослаблений
+
+
+	\vspace{1.0cm} % Вертикальный отступ 
+	\centering
+	{ \textbf{Отклонение переходных ослаблений антенн:} \  }  
+	\vspace{0.5cm}
+
+		\begin{tabular}{| >{\centering\arraybackslash}m{8.5cm} | >{\centering\arraybackslash}m{8.5cm} |}\hline
+			& \\ [-1em] % увеличение высоты строки в таблице
+			Наименование & Значение, дБ \\
+			\hline	
+			ВХ1 & \InputA \\
+			\hline 
+			ВХ2 & \InputB \\
+			\hline 
+			ВЫХ1 & \OutputA \\
+			\hline  
+			ВЫХ2 & \OutputB \\ 
+			\hline 
+			
+		\end{tabular}
+	
+	% Заключение
+	
+	\vspace{1.5cm} % Вертикальный отступ 
+	\centering
+	{ \large\textbf{Заключение} \  } 
+	\vspace{1.0cm}
+	
+	 Изделия (партии, комплекты) \rule[+0.0mm]{2cm}{0.1mm}  \hskip 0.01\hsize  зав. №  \hskip 0.01\hsize \rule[+0.0mm]{6cm}{0.1mm}   соответствуют требованиям 
+     \newline  %\newline
+    
+     \rule[+0.0mm]{4cm}{0.1mm}, приняты и годны для использования по назначению (эксплуатации).
+	 \newline  %\newline  % \newline
+
+     Изделия (партии, комплекты) \rule[+0.0mm]{3cm}{0.1mm}  \hskip 0.01\hsize  зав. №  \hskip 0.01\hsize \rule[+0.0mm]{6cm}{0.1mm}  не соответствуют 
+	 \newline  %\newline
+	
+ 	 требованиям \hskip 0.01\hsize \rule[+0.0mm]{6cm}{0.1mm} и подлежат возврату ОТК. \\
+	 \hskip 0.13\hsize обозначение документа  
+	 \newline   %\newline
+
+     Представитель 607 ВП МО РФ  \hskip 0.02\hsize \rule[+0.0mm]{2.6cm}{0.1mm}  \hskip 0.05\hsize \rule[+0.0mm]{4.3cm}{0.1mm}  \hskip 0.05\hsize \rule[+0.0mm]{2.5cm}{0.1mm}  \hskip 0.01\hsize \\
+	
+	 \hskip 0.25\hsize подпись \hskip 0.12\hsize инициалы,фамилия \hskip 0.12\hsize дата 
+
+	  
+\end{document}	
