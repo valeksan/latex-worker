@@ -1,0 +1,2 @@
+libssl-dev libzbar-dev libopencv-dev libcrypto++-dev zlib1g-dev texlive latexmk texlive-lang-cyrillic texlive-latex-extra
+
